@@ -1,0 +1,101 @@
+{% extends 'store/layouts/main.html' %}
+
+{% block content %}
+<div class="py-3 bg-primary">
+    <div class="container">
+        <a class="text-white" href="{% url 'home' %}"> Home /</a>
+        <a class="text-white" href="{% url 'checkout' %}"> Checkout </a>
+    
+    </div>
+</div>
+<div class="container mt-3">
+    <form action="{% url 'placeorder' %}" method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-7">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h6>Basic Details</h6>
+                        <hr>
+                        <div class="row checkoutform">
+                            <div class="col-md-6">
+                                <label>First Name</label>
+                                <input type="text" required class="form-control" name="fname" placeholder="Enter first name">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Last Name</label>
+                                <input type="text" required class="form-control" name="lname" placeholder="Enter last name">
+                            </div>
+                            <div class="col-md-6 mt-2">
+                                <label>Email</label>
+                                <input type="email" required class="form-control" name="email" placeholder="Enter email">
+                            </div>
+                            <div class="col-md-6 mt-2">
+                                <label>Phone number</label>
+                                <input type="text" required class="form-control" name="phone" placeholder="Enter phone number">
+                            </div>
+                            <div class="col-md-12 mt-2">
+                                <label>Address</label>
+                                <textarea type="text" required class="form-control" name="address" placeholder="Enter address"></textarea>
+                            </div>
+                            <div class="col-md-6 mt-2">
+                                <label>City</label>
+                                <input type="text" required class="form-control" name="city" placeholder="Enter City">
+                            </div>
+                            <div class="col-md-6 mt-2">
+                                <label>Country</label>
+                                <input type="text" required class="form-control" name="country" placeholder="Enter Country">
+                            </div>
+                            <div class="col-md-12 mt-2">
+                                <label>Pin Code</label>
+                                <input type="text" required class="form-control" name="pincode" placeholder="Enter Pin Code">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-md-5">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h6 class="fw-bold" style="font-size: 1.25rem;">Order Summary</h6>
+                        <hr>
+                        {% if cartitems %}
+                            <table class="table table-stripeds table-bordereds">
+                                <thead>
+                                    <tr>
+                                        <th>Book</th>
+                                        <th class="text-end">Quantity</th>
+                                        <th class="text-end">Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in cartitems %}
+                                        <tr>
+                                            <td class="align-middle">
+                                                <img src="{{ item.product.image_link}}" width="50px" class="me-2">
+                                                {{ item.product.title }}</td>
+                                            <td class="align-middle text-end">{{ item.product_qty }}</td>
+                                            <td class="align-middle text-end">{{ item.product.price | floatformat:2 }} $</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <h6 class="fw-bold">Grand Total
+                                <span class="float-end">{{total_price | floatformat:2 }} $</span>
+                            </h6>
+                            <input type="hidden" value="COD" name="payment_mode">
+                            <div class="mt-3">
+                                <button type="submit" class="btn btn-success w-100 py-2">Place Order</button>
+                            </div>
+                        {% else %}
+                            <h4>Your cart is empty</h4>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock content %}

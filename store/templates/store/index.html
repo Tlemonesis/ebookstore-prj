@@ -1,0 +1,38 @@
+{% extends 'store/layouts/main.html' %}
+
+{% block content %}
+  {% include 'store/inc/slider.html' %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="text-center"> Trending Books <i class="fa-solid fa-fire"></i></h2>
+        <hr>
+        <div class="row">
+          {% for item in trending_products %}
+            <div class="col-md-3 mt-3">
+              <div class="card">
+                <a href="{% url 'productview' item.category.slug item.slug %}">
+                  <div class="card-body">
+                    <div class="category-image">
+                        <img height="150px" src="{{ item.image_link }}" alt="Product image" style="display: block; margin: 0 auto;" />
+                    </div>
+                    <hr>
+                    <h6 class="text-center" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: black;"> {{ item.title }} </h6>
+                    <div>
+                    <span> {{ item.price | floatformat:2 }} $</span>
+                    <span class="float-sm-end">
+                      <div class="stars-outer">
+                        <div class="stars-inner"></div>
+                    </div>
+                      <small>&nbsp&nbsp<font>{{item.rating | floatformat:1 }}</font></small>
+                    </span>
+                  </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+{% endblock %}

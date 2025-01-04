@@ -1,0 +1,40 @@
+{% load static %}
+
+<div class="card shadow mt-5">
+  <div class="card-body">
+    <div class="row">
+        <div class="col-md-3">
+          <a href="{% url 'home' %}"><img src="{% static 'images/open-book.png' %}" style="height: 100px; margin-left: 85px;" alt=""></a><span style="font-size: 50px; font-weight: 300; margin-left: 5px;">EBookStore</span>
+        </div>
+        <div class="col-md-3">
+          <h3 style="font-weight: 400;">Services</h3>
+          <ul style="list-style: none; padding: 0;">
+            <li>Terms of Use</li>
+            <li>Personal Information Privacy Policy</li>
+            <li>Payment Privacy Policy</li>
+            <li>About us</li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h3 style="font-weight: 400;">Support</h3>
+          <ul style="list-style: none; padding: 0;">
+            <li>Return - Refund Policy</li>
+            <li>Warranty - Compensation Policy</li>
+            <li>Shipping Policy</li>
+            <li>Wholesale Customer Policy</li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h3 style="font-weight: 400;">Contact</h3>
+          <div >
+            <i class="fa-solid fa-location-dot"></i><p>Tran Phu, Ha Dong, Ha Noi</p>
+          </div>
+          <div>
+            <i class="fa-solid fa-envelope"></i><p>cskh@anhng.com.vn</p>
+          </div>
+          <div>
+            <i class="fa-solid fa-phone"></i> <p>0987654321</p>
+          </div>
+        </div>
+    </div>
+</div>
