@@ -4,10 +4,6 @@
 
 ---
 
-## 🎬 Demo
-
----
-
 ## 📸 Screenshots
 
 | Home Page | Book Detail | Search Results |
@@ -63,21 +59,49 @@
 ```
 ebookstore-prj/
 │
-├── store/
-│   ├── templates/
-│   │   └── store/
-│   │       ├── inc/
-│   │       │   └── navbar.html      # Custom navigation bar
-│   │       ├── home.html
-│   │       ├── book_detail.html
-│   │       └── cart.html
+├── ebookstore/                  # Django project settings
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+│
+├── store/                       # Main application
+│   ├── controller/              # View logic separated by feature
+│   │   ├── authview.py          # Login / Register
+│   │   ├── cart.py              # Cart interactions
+│   │   ├── checkout.py          # Checkout form
+│   │   └── wishlist.py          # Wishlist feature
+│   ├── migrations/              # Database migrations
+│   ├── templates/store/
+│   │   ├── auth/
+│   │   │   ├── login.html
+│   │   │   └── register.html
+│   │   ├── inc/
+│   │   │   ├── navbar.html      # Custom navigation bar
+│   │   │   ├── footer.html
+│   │   │   └── slider.html
+│   │   ├── layouts/
+│   │   │   └── main.html        # Base template
+│   │   ├── products/
+│   │   │   ├── index.html       # Book catalog
+│   │   │   └── view.html        # Book detail page
+│   │   ├── cart.html
+│   │   ├── checkout.html        # Checkout form UI
+│   │   ├── collections.html
+│   │   └── wishlist.html
 │   ├── static/
 │   │   ├── css/
+│   │   │   └── custom.css       # Custom styles
 │   │   └── js/
+│   │       ├── custom.js        # Custom JS interactions
+│   │       └── jquery-3.7.1.min.js
 │   ├── models.py
 │   ├── views.py
-│   └── urls.py
+│   ├── urls.py
+│   ├── forms.py
+│   └── admin.py
 │
+├── screenshots/                 # UI screenshots for README
+├── demo.mp4                     # Project demo video
 ├── requirements.txt
 ├── manage.py
 └── README.md
